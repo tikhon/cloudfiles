@@ -1,0 +1,47 @@
+= Mosso Cloud Files
+
+== Description
+
+This is a Ruby interface into the Rackspace[http://rackspace.com/] {Mosso Cloud Files}[http://www.mosso.com/cloudfiles.jsp] service. Cloud Files is reliable, scalable and affordable web-based storage hosting for backing up and archiving all your static content.  Cloud Files is the first and only cloud service that leverages a tier one CDN provider to create such an easy and complete storage-to-delivery solution for media content.
+
+== Examples
+
+See the class definitions for documentation on specific methods and operations.
+
+  require 'cloudfiles'
+
+  # Log into the Cloud Files system
+  cf = CloudFiles::Connection.new(USERNAME, API_KEY)
+
+  # Get a listing of all containers under this account
+  cf.containers
+  => ["backup", "Books", "cftest", "test", "video", "webpics"]
+
+  # Access a specific container
+  container = cf.container('test')
+
+  # See how many objects are under this container
+  container.count
+  => 3
+
+  # List the objects
+  container.objects
+  => ["bigfile.txt", "new.txt", "test.txt"]
+
+  # Select an object
+  object = container.object('test.txt')
+
+  # Get that object's data
+  object.data
+  => "This is test data"
+
+== Authors
+
+Initial work by Major Hayden <major.hayden@rackspace.com>
+
+Subsequent work by H. Wade Minter <wade.minter@rackspace.com>
+
+== License
+
+See COPYING for license information.
+Copyright (c) 2009, Rackspace US, Inc.
